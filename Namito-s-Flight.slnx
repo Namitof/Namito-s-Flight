@@ -3,5 +3,5 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Project Path="Namito-s-Flight.vcxproj" />
+  <Project Path="Namito-s-Flight.vcxproj" Id="634925fb-5dad-4a71-8455-156bd230c797" />
 </Solution>
