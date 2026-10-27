@@ -1,6 +1,7 @@
 #include "ScreenGame.h"
 
 #include "Objects/Player.h"
+#include "Objects/CollisionManager.h"
 
 namespace Game
 {
@@ -13,9 +14,11 @@ namespace Game
 		Player::Init(player, screenWidth, screenHeight);
 	}
 
-	void Update(float deltaTime)
+	void Update(float deltaTime, int screenWidth, int screenHeight)
 	{
 		Player::Update(player, deltaTime);
+
+		ColisionManager::CheckColisions(player, screenWidth, screenHeight);
 	}
 
 	void Draw()

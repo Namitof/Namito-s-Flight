@@ -26,7 +26,7 @@ namespace ScreenManager
 
 	static void Update(float deltaTime)
 	{
-		Game::Update(deltaTime);
+		Game::Update(deltaTime, SCREEN_WIDTH, SCREEN_HEIGHT);
 	}
 
 	static void Draw()
