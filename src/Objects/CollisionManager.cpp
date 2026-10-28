@@ -1,5 +1,7 @@
 #include "CollisionManager.h"
 
+#include <raylib.h>
+
 #include "Player.h"
 #include "Obstacle.h"
 

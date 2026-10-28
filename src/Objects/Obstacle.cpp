@@ -1,6 +1,6 @@
 #include "Obstacle.h"
 
-#include <cstdlib>
+#include <raylib.h>
 
 namespace Obtacle
 {

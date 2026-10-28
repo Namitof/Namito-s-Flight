@@ -1,5 +1,7 @@
 #include "Player.h"
 
+#include <raylib.h>
+
 namespace Player
 {
 	void Init(Player& player, int screenWidth, int screenHeight)
