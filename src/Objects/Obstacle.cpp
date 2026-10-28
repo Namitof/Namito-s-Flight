@@ -4,6 +4,20 @@
 
 namespace Obtacle
 {
+	//Constantes
+	static const float OFFSET_VALUE = 150.0f;
+
+	static const float OBSTACLE_WIDTH = 50.0f;
+	static const float OBSTACLE_HEIGHT = 720.0f;
+	
+	static const float OBSTACLE_SPEED = 150.0f;
+	
+	static const Vector2 SPAWN = { 1280, 0 };
+	
+	static const float MIN_HEIGHT = 150.0f; //200.0f;
+	static const float MAX_HEIGHT = 570.0f; //1080.0f;
+
+
 	static void setPos(Obstacle& obstacle, float x, float y);
 
 	static void SetRandomHeight(Obstacle& obstacle);
@@ -19,7 +33,7 @@ namespace Obtacle
 		obstacle.rectangleDown.y = y;
 
 		obstacle.rectangleUp.x = x;
-		obstacle.rectangleUp.y = y - obstacle.path - obstacle.rectangleUp.height;
+		obstacle.rectangleUp.y = y - obstacle.offset - obstacle.rectangleUp.height;
 	}
 
 	static void SetRandomHeight(Obstacle& obstacle)
@@ -50,7 +64,7 @@ namespace Obtacle
 		obstacle.speed.x = OBSTACLE_SPEED;
 		obstacle.speed.y = OBSTACLE_SPEED;
 
-		obstacle.path = PATH_SIZE;
+		obstacle.offset = OFFSET_VALUE;
 
 		obstacle.rectangleUp.x = 0;
 		obstacle.rectangleUp.y = 0;
