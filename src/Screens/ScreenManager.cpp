@@ -1,5 +1,7 @@
 #include "ScreenManager.h"
 
+#include <ctime>
+
 #include <raylib.h>
 
 #include "ScreenGame.h"
@@ -21,12 +23,21 @@ namespace ScreenManager
 	{
 		InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Namito's Flight");
 
+		SetRandomSeed(static_cast<unsigned int>(time(NULL)));
+
 		Game::Init(SCREEN_WIDTH, SCREEN_HEIGHT);
 	}
 
 	static void Update(float deltaTime)
 	{
-		Game::Update(deltaTime, SCREEN_WIDTH, SCREEN_HEIGHT);
+		bool isGameOver;
+
+		Game::Update(deltaTime, SCREEN_HEIGHT, isGameOver);
+
+		if (isGameOver)
+		{
+			Game::Init(SCREEN_WIDTH, SCREEN_HEIGHT);
+		}
 	}
 
 	static void Draw()
