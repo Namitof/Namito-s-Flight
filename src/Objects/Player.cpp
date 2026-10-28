@@ -32,15 +32,18 @@ namespace Player
 		{
 			player.direction.x = 0;
 			player.direction.y = -1;
+
+			player.position.x += player.direction.x * player.speed.x * deltaTime;
+			player.position.y += player.direction.y * player.speed.y * deltaTime;
 		}
 		else if (IsKeyDown(KEY_S))
 		{
 			player.direction.x = 0;
 			player.direction.y = 1;
-		}
 
-		player.position.x += player.direction.x * player.speed.x * deltaTime;
-		player.position.y += player.direction.y * player.speed.y * deltaTime;
+			player.position.x += player.direction.x * player.speed.x * deltaTime;
+			player.position.y += player.direction.y * player.speed.y * deltaTime;
+		}
 
 		player.hitbox.x = player.position.x;
 		player.hitbox.y = player.position.y;
