@@ -5,12 +5,24 @@
 #include <raylib.h>
 
 #include "ScreenGame.h"
+#include "Utils/Text.h"
 
 namespace ScreenManager
 {
-	//Recursos
+	//Constantes
 	static const int SCREEN_WIDTH = 1080;
 	static const int SCREEN_HEIGHT = 720;
+
+	static const int MAX_FONT_SIZE = 100;
+
+	
+	//Recursos
+	static Font font;
+
+	static Text::Text version;
+
+	
+	static void TextInit();
 
 	static void Init();
 
@@ -18,12 +30,28 @@ namespace ScreenManager
 
 	static void Draw();
 
+	static void Delete();
+
+
+	static void TextInit()
+	{
+		const float fontSize = 50.0f;
+
+		const Vector2 position = { 10, 0 };
+
+		Text::Init(version, font, fontSize, "v 0.1", position, 0, BLACK);
+	}
 
 	static void Init()
 	{
 		InitWindow(SCREEN_WIDTH, SCREEN_HEIGHT, "Namito's Flight");
 
 		SetRandomSeed(static_cast<unsigned int>(time(NULL)));
+
+		//Carga centralizada de recursos
+		font = LoadFontEx("res/font/accid___.ttf", MAX_FONT_SIZE, NULL, 0);
+
+		TextInit();
 
 		Game::Init(SCREEN_WIDTH, SCREEN_HEIGHT);
 	}
@@ -47,7 +75,14 @@ namespace ScreenManager
 
 		Game::Draw();
 
+		Text::Draw(version);
+
 		EndDrawing();
+	}
+
+	static void Delete()
+	{
+		UnloadFont(font);
 	}
 
 	void Run()
@@ -68,6 +103,9 @@ namespace ScreenManager
 			// Dibujado
 			Draw();
 		}
+
+		//Borrar y liberar recursos
+		Delete();
 
 		// Cierre
 		CloseWindow();
