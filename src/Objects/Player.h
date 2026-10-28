@@ -4,20 +4,19 @@
 
 namespace Player
 {
-	const float PLAYER_WIDTH = 100.0f;
-	const float PLAYER_HEIGHT = 100.0f;
-
-	const float SPEED = 200.f;
-
 	struct Player
 	{
 		Vector2 position;
 
 		Vector2 direction;
 
-		Vector2 speed;
+		float verticalVelocity;
+
+		float maxVerticalVelocity;
 
 		Rectangle hitbox;
+
+		float jumpForce;
 
 		bool isAlive;
 
@@ -28,7 +27,7 @@ namespace Player
 
 	void Init(Player& player, int screenWidth, int screenHeight);
 
-	void Update(Player& player, float deltaTime);
+	void Update(Player& player, float deltaTime, float gravity);
 
 	void Draw(Player& player);
 }

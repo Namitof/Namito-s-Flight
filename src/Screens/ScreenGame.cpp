@@ -6,20 +6,26 @@
 
 namespace Game
 {
+	//Constantes
+	const float INITIAL_GRAVITY = 800.0f;
+
 	//Recursos
 	static Player::Player player;
 	static Obtacle::Obstacle obstacle;
 
+	static float gravity;
 
 	void Init(int screenWidth, int screenHeight)
 	{
 		Player::Init(player, screenWidth, screenHeight);
 		Obtacle::Init(obstacle);
+
+		gravity = INITIAL_GRAVITY;
 	}
 
 	void Update(float deltaTime, int screenHeight, bool& isGameOver)
 	{
-		Player::Update(player, deltaTime);
+		Player::Update(player, deltaTime, gravity);
 		Obtacle::Update(obstacle, deltaTime);
 
 		ColisionManager::CheckColisions(player, obstacle, screenHeight);
