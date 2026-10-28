@@ -25,6 +25,12 @@
     <Filter Include="Archivos de origen\Objects">
       <UniqueIdentifier>{36a35286-976c-4354-94c6-502841451151}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Archivos de origen\Utils">
+      <UniqueIdentifier>{fc451b8d-9664-45f5-8521-cdedf190302b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Archivos de encabezado\Utils">
+      <UniqueIdentifier>{452a1237-023a-4e25-bcfe-86bcaeeb1ff1}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp">
@@ -45,6 +51,9 @@
     <ClCompile Include="src\Objects\CollisionManager.cpp">
       <Filter>Archivos de origen\Objects</Filter>
     </ClCompile>
+    <ClCompile Include="src\Utils\Text.cpp">
+      <Filter>Archivos de origen\Utils</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Screens\ScreenManager.h">
@@ -61,6 +70,9 @@
     </ClInclude>
     <ClInclude Include="src\Objects\CollisionManager.h">
       <Filter>Archivos de encabezado\Objects</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\Text.h">
+      <Filter>Archivos de encabezado\Utils</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

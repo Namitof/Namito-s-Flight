@@ -131,6 +131,9 @@
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)res" "$(OutDir)res" /E /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
@@ -154,6 +157,9 @@
     <Manifest>
       <EnableSegmentHeap>true</EnableSegmentHeap>
     </Manifest>
+    <PostBuildEvent>
+      <Command>xcopy "$(SolutionDir)res" "$(OutDir)res" /E /I /Y</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
@@ -162,6 +168,7 @@
     <ClCompile Include="src\Objects\Player.cpp" />
     <ClCompile Include="src\Screens\ScreenGame.cpp" />
     <ClCompile Include="src\Screens\ScreenManager.cpp" />
+    <ClCompile Include="src\Utils\Text.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Objects\CollisionManager.h" />
@@ -169,6 +176,7 @@
     <ClInclude Include="src\Objects\Player.h" />
     <ClInclude Include="src\Screens\ScreenGame.h" />
     <ClInclude Include="src\Screens\ScreenManager.h" />
+    <ClInclude Include="src\Utils\Text.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
