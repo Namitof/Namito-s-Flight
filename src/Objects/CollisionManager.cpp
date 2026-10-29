@@ -51,9 +51,9 @@ namespace ColisionManager
 		{
 			player.position.y = 0;
 		}
-		else if (player.position.y + player.hitbox.height >= screenHeight)
+		else if (player.position.y >= screenHeight)
 		{
-			player.position.y = static_cast<float>(screenHeight) - player.hitbox.height;
+			player.isAlive = false;
 		}
 
 		//Chequeo colsion de los obstaculos con el borde izquierdo de la pantalla
