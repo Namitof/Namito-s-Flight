@@ -163,19 +163,25 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Objects\Button.cpp" />
     <ClCompile Include="src\Objects\CollisionManager.cpp" />
     <ClCompile Include="src\Objects\Obstacle.cpp" />
     <ClCompile Include="src\Objects\Player.cpp" />
+    <ClCompile Include="src\Screens\ScreenCredits.cpp" />
     <ClCompile Include="src\Screens\ScreenGame.cpp" />
     <ClCompile Include="src\Screens\ScreenManager.cpp" />
+    <ClCompile Include="src\Screens\ScreenMenu.cpp" />
     <ClCompile Include="src\Utils\Text.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Objects\Button.h" />
     <ClInclude Include="src\Objects\CollisionManager.h" />
     <ClInclude Include="src\Objects\Obstacle.h" />
     <ClInclude Include="src\Objects\Player.h" />
+    <ClInclude Include="src\Screens\ScreenCredits.h" />
     <ClInclude Include="src\Screens\ScreenGame.h" />
     <ClInclude Include="src\Screens\ScreenManager.h" />
+    <ClInclude Include="src\Screens\ScreenMenu.h" />
     <ClInclude Include="src\Utils\Text.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
