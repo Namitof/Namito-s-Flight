@@ -10,12 +10,12 @@
 namespace ScreenManager
 {
 	//Constantes
-	static const int SCREEN_WIDTH = 1080;
+	static const int SCREEN_WIDTH = 1280;
 	static const int SCREEN_HEIGHT = 720;
 
 	static const int MAX_FONT_SIZE = 100;
-
 	
+
 	//Recursos
 	static Font font;
 
@@ -39,7 +39,7 @@ namespace ScreenManager
 
 		const Vector2 position = { 10, 0 };
 
-		Text::Init(version, font, fontSize, "v 0.1", position, 0, BLACK);
+		Text::Init(version, font, fontSize, "v 0.2", position, 0, BLACK);
 	}
 
 	static void Init()
