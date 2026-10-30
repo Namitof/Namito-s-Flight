@@ -70,7 +70,7 @@ namespace Button
 		//Hitbox
 #ifdef _DEBUG
 #endif
-		DrawRectangleRec(currentButton.hitbox, RED);
+		DrawRectangleRec(currentButton.hitbox, currentButton.currentColor);
 		//Boton
 		// Sprite::Draw(currentButton.currentSprite);
 		Text::Draw(currentButton.text);
