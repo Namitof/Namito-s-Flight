@@ -12,8 +12,8 @@ namespace Player
 	static const float JUMP_FORCE = 300.0f;
 	static const float MAX_VELOCITY = 500.0f;
 
-	static Vector2 UP_DIR = { 0, -1 };
-	static Vector2 DOWN_DIR = { 0, 1 };
+	static const Vector2 UP_DIR = { 0, -1 };
+	static const Vector2 DOWN_DIR = { 0, 1 };
 
 	void Init(Player& player, int screenWidth, int screenHeight)
 	{
