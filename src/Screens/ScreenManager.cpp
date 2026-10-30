@@ -5,6 +5,8 @@
 #include <raylib.h>
 
 #include "ScreenGame.h"
+#include "ScreenMenu.h"
+#include "ScreenCredits.h"
 #include "Utils/Text.h"
 
 namespace ScreenManager
@@ -14,14 +16,18 @@ namespace ScreenManager
 	static const int SCREEN_HEIGHT = 720;
 
 	static const int MAX_FONT_SIZE = 100;
-	
+
 
 	//Recursos
 	static Font font;
 
 	static Text::Text version;
 
-	
+	static Screens currentScreen;
+
+	static bool isRunning;
+
+
 	static void TextInit();
 
 	static void Init();
@@ -48,23 +54,67 @@ namespace ScreenManager
 
 		SetRandomSeed(static_cast<unsigned int>(time(NULL)));
 
+		currentScreen = Screens::Menu;
+
+		isRunning = true;
+
 		//Carga centralizada de recursos
 		font = LoadFontEx("res/font/accid___.ttf", MAX_FONT_SIZE, NULL, 0);
 
 		TextInit();
 
 		Game::Init(SCREEN_WIDTH, SCREEN_HEIGHT);
+
+		Menu::Init(font, SCREEN_WIDTH, SCREEN_HEIGHT);
+
+		Credits::Init(font, SCREEN_WIDTH, SCREEN_HEIGHT);
 	}
 
 	static void Update(float deltaTime)
 	{
 		bool isGameOver;
+		bool playButtonPressed;
+		bool creditsButtonPressed;
+		bool exitButtonPressed;
+		bool backButtonPressed;
 
-		Game::Update(deltaTime, SCREEN_HEIGHT, isGameOver);
-
-		if (isGameOver)
+		switch (currentScreen)
 		{
-			Game::Init(SCREEN_WIDTH, SCREEN_HEIGHT);
+		case Screens::Menu:
+			Menu::Update(playButtonPressed, creditsButtonPressed, exitButtonPressed);
+			if (playButtonPressed)
+			{
+				currentScreen = Screens::Play;
+			}
+			else if (creditsButtonPressed)
+			{
+				currentScreen = Screens::Credits;
+			}
+			else if (exitButtonPressed)
+			{
+				currentScreen = Screens::Exit;
+			}
+			break;
+		case Screens::Play:
+			Game::Update(deltaTime, SCREEN_HEIGHT, isGameOver);
+			if (isGameOver)
+			{
+				currentScreen = Screens::Menu;
+				Game::Init(SCREEN_WIDTH, SCREEN_HEIGHT);
+			}
+			break;
+		case Screens::Credits:
+			Credits::Update(backButtonPressed);
+			if (backButtonPressed)
+			{
+				currentScreen = Screens::Menu;
+			}
+			break;
+		case Screens::Exit:
+			isRunning = false;
+			break;
+		default:
+			break;
 		}
 	}
 
@@ -73,9 +123,24 @@ namespace ScreenManager
 		BeginDrawing();
 		ClearBackground(WHITE);
 
-		Game::Draw();
+		switch (currentScreen)
+		{
+		case Screens::Menu:
+			Menu::Draw();
+			Text::Draw(version);
+			break;
+		case Screens::Play:
+			Game::Draw();
+			break;
+		case Screens::Credits:
+			Credits::Draw();
+			break;
+		case Screens::Exit:
 
-		Text::Draw(version);
+			break;
+		default:
+			break;
+		}
 
 		EndDrawing();
 	}
@@ -93,7 +158,7 @@ namespace ScreenManager
 		float deltaTime = 0.0f;
 
 		// Loop
-		while (!WindowShouldClose())
+		while (!WindowShouldClose() && isRunning)
 		{
 			deltaTime = GetFrameTime();
 
@@ -104,7 +169,7 @@ namespace ScreenManager
 			Draw();
 		}
 
-		//Borrar y liberar recursos
+		// Borrar y liberar recursos
 		Delete();
 
 		// Cierre
