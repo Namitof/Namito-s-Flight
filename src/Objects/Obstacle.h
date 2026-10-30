@@ -11,7 +11,8 @@ namespace Obtacle
 		Vector2 position;
 
 		Vector2 direction;
-		Vector2 speed; //float horizontalVelocity
+
+		Vector2 speed;
 
 		float offset;
 
@@ -22,7 +23,7 @@ namespace Obtacle
 	};
 
 
-	void Init(Obstacle& obstacle);
+	void Init(Obstacle& obstacle, int width, int height);
 
 	void Update(Obstacle& obstacle, float deltaTime);
 

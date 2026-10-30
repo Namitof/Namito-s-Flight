@@ -18,7 +18,7 @@ namespace Game
 	void Init(int screenWidth, int screenHeight)
 	{
 		Player::Init(player, screenWidth, screenHeight);
-		Obtacle::Init(obstacle);
+		Obtacle::Init(obstacle, screenWidth, screenHeight);
 
 		gravity = INITIAL_GRAVITY;
 	}

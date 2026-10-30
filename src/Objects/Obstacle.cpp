@@ -7,15 +7,21 @@ namespace Obtacle
 	//Constantes
 	static const float OFFSET_VALUE = 150.0f;
 
+	static const float OFFSET_SCREEN_LIMITS = 50.0f;
+
 	static const float OBSTACLE_WIDTH = 50.0f;
-	static const float OBSTACLE_HEIGHT = 720.0f;
-	
+
 	static const float OBSTACLE_SPEED = 150.0f;
-	
-	static const Vector2 SPAWN = { 1280, 0 };
-	
-	static const float MIN_HEIGHT = 150.0f; //200.0f;
-	static const float MAX_HEIGHT = 570.0f; //1080.0f;
+
+	static const float MIN_HEIGHT = 150.0f; 
+	static const float MAX_HEIGHT = 570.0f; 
+
+	static const Vector2 LEFT_DIR = { -1, 0 };
+	static const Vector2 HORIZONTAL_SPEED = { OBSTACLE_SPEED, 0 };
+
+	//Variables
+	static int screenWidth;
+	static int screenHeight;
 
 
 	static void setPos(Obstacle& obstacle, float x, float y);
@@ -40,29 +46,30 @@ namespace Obtacle
 	{
 		const float DIVISION = 100.0f;
 
-		int randomNumber = GetRandomValue(static_cast<int>(MIN_HEIGHT * DIVISION), static_cast<int>(MAX_HEIGHT * DIVISION));
+		int minHeight = static_cast<int>(OFFSET_VALUE + OFFSET_SCREEN_LIMITS);
+		int maxHeight = static_cast<int>(screenHeight - OFFSET_SCREEN_LIMITS);
+
+		int randomNumber = GetRandomValue(static_cast<int>(minHeight * DIVISION), static_cast<int>(maxHeight * DIVISION));
 
 		float randomHeigth = randomNumber / DIVISION;
 
+		obstacle.rectangleDown.height = screenHeight - randomHeigth;
+		obstacle.rectangleUp.height = randomHeigth - obstacle.offset;
+
 		setPos(obstacle, obstacle.position.x, randomHeigth);
-
-		/*obstacle.position.y = randomHeigth;
-
-		obstacle.rectangleDown.y = randomHeigth;
-
-		obstacle.rectangleUp.y = randomHeigth - obstacle.path - obstacle.rectangleUp.height;*/
 	}
 
-	void Init(Obstacle& obstacle)
+	void Init(Obstacle& obstacle, int width, int height)
 	{
-		obstacle.position.x = SPAWN.x;
+		screenWidth = width;
+		screenHeight = height;
+
+		obstacle.position.x = static_cast<float>(screenWidth);
 		obstacle.position.y = 0;
 
-		obstacle.direction.x = -1;
-		obstacle.direction.y = 0;
+		obstacle.direction = LEFT_DIR;
 
-		obstacle.speed.x = OBSTACLE_SPEED;
-		obstacle.speed.y = OBSTACLE_SPEED;
+		obstacle.speed = HORIZONTAL_SPEED;
 
 		obstacle.offset = OFFSET_VALUE;
 
@@ -70,13 +77,13 @@ namespace Obtacle
 		obstacle.rectangleUp.y = 0;
 
 		obstacle.rectangleUp.width = OBSTACLE_WIDTH;
-		obstacle.rectangleUp.height = OBSTACLE_HEIGHT;
+		obstacle.rectangleUp.height = 0;
 
 		obstacle.rectangleDown.x = 0;
 		obstacle.rectangleDown.y = 0;
 
 		obstacle.rectangleDown.width = OBSTACLE_WIDTH;
-		obstacle.rectangleDown.height = OBSTACLE_HEIGHT;
+		obstacle.rectangleDown.height = 0;
 
 		obstacle.isOffScreen = false;
 
@@ -92,7 +99,7 @@ namespace Obtacle
 
 		if (obstacle.isOffScreen)
 		{
-			setPos(obstacle, SPAWN.x, SPAWN.y);
+			setPos(obstacle, static_cast<float>(screenWidth), 0.0f);
 			SetRandomHeight(obstacle);
 			obstacle.isOffScreen = false;
 		}
